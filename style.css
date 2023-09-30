@@ -2,7 +2,7 @@
 * {
   margin: 0px;
   padding: 0px;
-  background-color: var(--bgTestClr) !important;
+  /* background-color: var(--bgTestClr) !important; */
 }
 
 :root {
