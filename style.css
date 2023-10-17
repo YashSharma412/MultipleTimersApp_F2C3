@@ -27,6 +27,14 @@
   --FS_fourth: 42px;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 body {
   width: 100%;
   box-sizing: border-box;
@@ -43,7 +51,6 @@ main {
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-
 }
 header {
   /* width: 100%; */
@@ -72,7 +79,6 @@ header > section > p {
   font-weight: var(--weightDarker);
 }
 
-
 #setTimer_Display > input,
 #setTimer_Display > label {
   width: 80px;
@@ -89,8 +95,7 @@ header > section > p {
   text-decoration: underline;
 }
 
-
-header > section > button {
+header > section button {
   font-size: var(--FS_first);
   color: var(--btnTxtClr);
   font-weight: var(--weightDarker);
@@ -98,7 +103,6 @@ header > section > button {
   border-radius: 25px;
   background-color: var(--btnBgActive);
 }
-
 
 #Main_section {
   width: 100%;
@@ -199,12 +203,12 @@ header > section > button {
     --FS_third: 30px;
     --FS_fourth: 36px;
   }
-  main{
+  main {
     /* margin: none; */
     width: 90%;
     min-width: 380px;
   }
-  header > section{
+  header > section {
     margin: auto;
     width: 60%;
     min-width: 340px;
@@ -212,18 +216,18 @@ header > section > button {
     flex-direction: column;
     justify-content: center;
   }
-  #setTimer_Display{
-    align-self:flex-end;
+  #setTimer_Display {
+    align-self: flex-end;
   }
-  
-  .TimerCard{
-      padding: 15px 15px;
+
+  .TimerCard {
+    padding: 15px 15px;
     width: 70%;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
   }
-  .TimerCardCompleted{
+  .TimerCardCompleted {
     padding: 15px 15px;
     width: 70%;
     flex-direction: column;
@@ -231,7 +235,6 @@ header > section > button {
     gap: 10px;
   }
   .TimerCardCompleted > button {
-  margin-left: 0px;
-
+    margin-left: 0px;
   }
 }

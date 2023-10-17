@@ -5,8 +5,8 @@ const inputHours = document.getElementById("hours");
 const inputMinutes = document.getElementById("minutes");
 const inputSeconds = document.getElementById("seconds");
 
-const audioClip = document.createElement('audio');
-audioClip.src = './assets/mixkit-alarm-digital-clock-beep-989.wav';
+const audioClip = document.createElement("audio");
+audioClip.src = "./assets/mixkit-alarm-digital-clock-beep-989.wav";
 
 const setTimerBtn = document.getElementById("setTimerButton");
 setTimerBtn.addEventListener("click", getData);
@@ -47,7 +47,7 @@ function getData() {
   }
 
   if (tObj.hours + tObj.minutes + tObj.seconds > 0) {
-    let timeObj = {...tObj};
+    let timeObj = { ...tObj };
     createNewTimer(timeObj);
     inputHours.value = "";
     inputMinutes.value = "";
@@ -59,64 +59,64 @@ function getData() {
 }
 
 function createNewTimer(timeObj) {
-    const card = document.createElement('div');
-    card.className = "TimerCard";
+  const card = document.createElement("div");
+  card.className = "TimerCard";
 
-    const para = document.createElement('p');
-    para.innerText = "Time Left : ";
-    card.appendChild(para);
+  const para = document.createElement("p");
+  para.innerText = "Time Left : ";
+  card.appendChild(para);
 
-    const timerDisplay = document.createElement('h1');
-    card.appendChild(timerDisplay);
+  const timerDisplay = document.createElement("h1");
+  card.appendChild(timerDisplay);
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerText = "Delete";
-    deleteBtn.addEventListener('click', handleCardDelete);
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.addEventListener("click", handleCardDelete);
 
-    const stopBtn = document.createElement('button');
-    stopBtn.innerText = 'stop';
-    stopBtn.addEventListener('click', ()=>{
-      clearInterval(interval);
-      setTimeout(()=>{
-        card.replaceChild(deleteBtn, stopBtn);
-        
-      },1000);
-    });
-    card.appendChild(stopBtn);
-    cardList.appendChild(card);
-
-    let TimeInMiliSeconds = (timeObj.hours*3600 + timeObj.minutes*60 + timeObj.seconds)*1000;
-    // console.log(TimeInMiliSeconds);
-    UpdateTimerTextDisplay();
-
-    const interval = setInterval(()=>{
-      TimeInMiliSeconds = TimeInMiliSeconds - 1000;
-      if(TimeInMiliSeconds <= 0){
-        // we have reached timer end
-        clearInterval(interval);
-        card.replaceChild(deleteBtn, stopBtn);
-        card.className = 'TimerCardCompleted';
-        para.innerText = '';
-        timerDisplay.innerText = ' Timer is Up ! ';
-        playAudiAlert();
-      } else {
-        UpdateTimerTextDisplay();
-      }
+  const stopBtn = document.createElement("button");
+  stopBtn.innerText = "stop";
+  stopBtn.addEventListener("click", () => {
+    clearInterval(interval);
+    setTimeout(() => {
+      card.replaceChild(deleteBtn, stopBtn);
     }, 1000);
+  });
+  card.appendChild(stopBtn);
+  cardList.appendChild(card);
 
-    function UpdateTimerTextDisplay(){
-      const dispHours = parseInt(TimeInMiliSeconds/3600000);
-      const dispMinutes = parseInt((TimeInMiliSeconds%3600000)/60000);
-      const dispSeconds = parseInt((TimeInMiliSeconds%60000) / 1000);
-      timerDisplay.innerText = `${formatTime(dispHours)} : ${formatTime(dispMinutes)} : ${formatTime(dispSeconds)}`;
-    }
+  let TimeInMiliSeconds =
+    (timeObj.hours * 3600 + timeObj.minutes * 60 + timeObj.seconds) * 1000;
+  // console.log(TimeInMiliSeconds);
+  UpdateTimerTextDisplay();
 
-    function  formatTime(timeValue){
-      return (timeValue < 10) ? `0${timeValue}` : timeValue;
+  const interval = setInterval(() => {
+    TimeInMiliSeconds = TimeInMiliSeconds - 1000;
+    if (TimeInMiliSeconds <= 0) {
+      // we have reached timer end
+      clearInterval(interval);
+      card.replaceChild(deleteBtn, stopBtn);
+      card.className = "TimerCardCompleted";
+      para.innerText = "";
+      timerDisplay.innerText = " Timer is Up ! ";
+      playAudiAlert();
+    } else {
+      UpdateTimerTextDisplay();
     }
+  }, 1000);
+
+  function UpdateTimerTextDisplay() {
+    const dispHours = parseInt(TimeInMiliSeconds / 3600000);
+    const dispMinutes = parseInt((TimeInMiliSeconds % 3600000) / 60000);
+    const dispSeconds = parseInt((TimeInMiliSeconds % 60000) / 1000);
+    timerDisplay.innerText = `${formatTime(dispHours)} : ${formatTime(
+      dispMinutes
+    )} : ${formatTime(dispSeconds)}`;
+  }
+
+  function formatTime(timeValue) {
+    return timeValue < 10 ? `0${timeValue}` : timeValue;
+  }
 }
-
-
 
 // if all card are deleted show msg "there are no cards currently"
 function CheckForNoCard() {
@@ -134,10 +134,10 @@ function handleCardDelete(event) {
   CheckForNoCard();
 }
 
-function playAudiAlert(){
+function playAudiAlert() {
   audioClip.play();
 }
 
-function pauseAudioAlert(){
+function pauseAudioAlert() {
   audioClip.pause();
 }
